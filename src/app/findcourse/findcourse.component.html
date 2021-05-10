@@ -1,0 +1,96 @@
+<div class="container">
+  <br><br>
+    <div class="jumbotron-fluid" style = "text-align: center;" [@Enter] = "'flyIn'">
+      <p class = "lead">We've got plenty of courses.
+      <p class = "lead">Can't find it? No problem, send us the course recommendation in the feedback</p>
+      <br><br>
+      <div class="input-group" style = "width: 50%; margin: auto;">
+        <div class="input-group-addon" style= "background-color: #bd68ee;">
+          &nbsp; <i class="bi bi-search" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+        </div>
+        <input class = "form-control" type="text" name="searchCourse" [(ngModel)] = "searchInDirectory" placeholder="Enter any course to search...">
+      </div>
+      <br><br><br>
+      <button id = "btnModified" class = "btn btn-outline-light" type="submit" name="button" (click) = "searchCourses()">Search</button>
+      <br><br><br>
+
+      <div class="table-responsive" style = "margin: auto; text-align: center; width: 60%;" *ngIf = "dataAvailable">
+        <table class = "table table-hover table-borderless">
+          <thead>
+            <tr>
+              <th scope = "col">
+                No.<br>
+              </th>
+              <th scope = "col">
+                Course Name<br>
+              </th>
+              <th scope = "col">
+                Course Author<br>
+              </th>
+              <th>
+    	          Play Course<br>
+              </th>
+            </tr>
+          </thead>
+          <br>
+          <tbody>
+            <tr *ngFor = "let cDisplay of courseDisplay; let i = index">
+              <td>
+                {{+ i + 1}}
+              </td>
+              <td>
+                {{cDisplay.coursename}}
+              </td>
+              <td>
+                {{cDisplay.courseauthors}}
+              </td>
+              <td>
+                <button id = "btnModified" class = "btn btn-outline-light" (click) = "playCourse(cDisplay.coursename)" type="submit" name="button" style = "justify-content: center; align-content: center; align-self: center; align-items: center;"><i class="bi bi-play-btn" style = "justify-content: center; align-content: center; align-self: center; align-items: center;"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-responsive" style = "margin: auto; text-align: center; width: 60%;" *ngIf = "dataUnavailable">
+        <table class = "table table-hover table-borderless">
+          <thead>
+            <tr>
+              <th scope = "col">
+                We're sorry! :(<br>
+              </th>
+            </tr>
+          </thead>
+          <br>
+          <tbody>
+            <tr >
+              <td>
+                Oops! We don't have any courses with that name yet. Hurry! Send us a course recommendation in the feedback. :)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <br><br>
+    <div *ngIf = "serverError">
+      <div class="alert alert-danger alert-dismissible fade show" id = "serverAlert" role = "alert" style = "width: 45%; margin: auto;">
+          <button type="button" aria-hidden="true" (click) = "hideserverAlert()" class="close" aria-label="Close">
+            <i class="bi bi-x"></i>
+          </button>
+          <span>
+          <b> Server Error - </b> An unknown server error occurred while trying to find course. Please try again! </span>
+      </div>
+    </div>
+
+    <div *ngIf = "emptyInput">
+      <div class="alert alert-warning alert-dismissible fade show" id = "emptyAlert" role = "alert" style = "width: 45%; margin: auto;">
+          <button type="button" aria-hidden="true" (click) = "hideEmptyAlert()" class="close" aria-label="Close">
+            <i class="bi bi-x"></i>
+          </button>
+          <span>
+          <b> You didn't add anything to search - </b> Please type something in the search bar to search! </span>
+      </div>
+    </div>
+</div>

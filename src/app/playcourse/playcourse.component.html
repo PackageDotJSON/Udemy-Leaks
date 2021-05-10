@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <br>
+    <div class="jumbotron-fluid">
+        &nbsp; &nbsp; &nbsp; &nbsp;
+      <div class="video-player-wrapper">
+
+      <video id = "videoPlayer" controls preload = "metadata" style = "width: 65%; position: fixed; border: 2px solid #7c2c6c;">
+          <source src="https://www.udemy-leaks.com:443/api/playVideo?id={{userSelectedCourse}}&id2={{courseContent}}&id3={{courseToPlay}}" autoplay type="video/mp4">
+      </video>
+
+      </div>
+      <div style = "float: right; width: 30%;">
+
+        <div *ngFor = "let cList of courseList; let i = index" style = "max-height: 880px; overflow-y: auto" class = 'myCoursesList'>
+          <button id = "btnModified" style = " text-align: center; width: 100%;" class="btn btn-primary" type="button" data-toggle="collapse" [attr.data-target]="'#collapseExample'+i" aria-expanded="false" aria-controls="collapseExample" (click) = "openDetailedCourse(cList)">
+            {{cList}}
+          </button>
+          <br>
+          <div class="collapse" [attr.id] ="'collapseExample'+i" *ngFor = "let tabList of detailedCourseList; let j = index;">
+            <!-- <div class="card card-body"> -->
+              <button style = " text-align: center; width: 100%;" id = "btnModified" class = "btn btn-primary" type="submit" name="button" (click) = "playCourse(tabList); renewVideo()">{{tabList}}</button>
+            <!-- </div> -->
+          </div>
+          <br>
+        </div>
+      </div>
+
+</div>
+
+<br><br><br><br>
+<div *ngIf = "serverError">
+  <div class="alert alert-danger alert-dismissible fade show" id = "serverAlert" role = "alert" style = "width: 45%; margin: auto;">
+      <button type="button" aria-hidden="true" (click) = "hideserverAlert()" class="close" aria-label="Close">
+        <i class="bi bi-x"></i>
+      </button>
+      <span>
+      <b> Server Error - </b> An unknown server error occurred while trying to play the video. Please try again! </span>
+  </div>
+</div>
+
+</div>

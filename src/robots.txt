@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://udemy-leaks.com/sitemap.xml

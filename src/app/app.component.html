@@ -1,0 +1,36 @@
+<div *ngIf = "isLoading">
+    <br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+  <div class = "d-flex justify-content-center" *ngIf = "isLoading">
+    <img src="assets\logo.png" class="img-fluid" style = "height: 37px;">
+    <br><br>
+  </div>
+  <div class="d-flex justify-content-center" *ngIf = "isLoading">
+    <div class="spinner-grow" role="status" style = "color: #7c2c6c;">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+
+
+  <app-navbar *ngIf = "!isLoading"></app-navbar>
+
+  <router-outlet *ngIf = "!isLoading"></router-outlet>
+
+<div *ngIf = "!isLoading">
+  <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
+    <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+      <div class="toast-header">
+        <img src="assets\cookieslogo.png" class="rounded mr-2" alt="..." style = "height: 30px;">
+        <strong class="mr-auto" style = "font-size: 16px;">Cookies</strong>
+        <!-- <small>11 mins ago</small> -->
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close" (click) = "hideCookie()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body" style = "font-size: 16px;">
+        In order to protect your privacy, we do not store any type of cookies.
+      </div>
+    </div>
+  </div>
+</div>

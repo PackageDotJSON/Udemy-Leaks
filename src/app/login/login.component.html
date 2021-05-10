@@ -1,0 +1,68 @@
+<div class="container" style = "text-align: center;" [@Enter] = "'flyIn'">
+
+  <br><br><br>
+  <p class = "lead"><i class="bi bi-lock" style = "font-size: 3rem;"></i> Login</p>
+
+  <br><br>
+  <form (ngSubmit) = "logIn(f)" #f = "ngForm">
+  <div class="form-group">
+    <div class="input-group" style = "width: 50%; margin: auto;">
+      <div class="input-group-addon" style= "background-color: #bd68ee;">
+        &nbsp; <i class="bi bi-envelope" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+      </div>
+      <input class = "form-control" type="email" ngModel name="usermail" placeholder="Email" required autocomplete="off">
+    </div>
+    <br><br>
+    <div class="input-group" style = "width: 50%; margin: auto;">
+      <div class="input-group-addon" style= "background-color: #bd68ee;">
+        &nbsp; <i class="bi bi-key" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+      </div>
+      <input class = "form-control" type="password" ngModel name="passcode" placeholder="Password" required autocomplete="new-password">
+    </div>
+    <br><br><br>
+      <button id = "btnModified" class = "btn btn-outline-light" type="submit" name="button" [disabled] = "buttonClicked">Let me in!</button>
+
+  </div>
+  </form>
+
+  <br>
+  <div *ngIf = "logInSuccess">
+    <div class="alert alert-success alert-dismissible fade show" id = "logInAlert" role = "alert" style = "width: 45%; margin: auto;">
+        <button type="button" aria-hidden="true" (click) = "hidelogInAlert()" class="close" aria-label="Close">
+          <i class="bi bi-x"></i>
+        </button>
+        <span>
+        <b> Login Successful - </b> User logged in successfully! </span>
+    </div>
+  </div>
+
+  <div *ngIf = "logInFailure">
+    <div class="alert alert-danger alert-dismissible fade show" id = "logFailAlert" role = "alert" style = "width: 50%; margin: auto;">
+        <button type="button" aria-hidden="true" (click) = "hidelogFailAlert()" class="close" aria-label="Close">
+          <i class="bi bi-x"></i>
+        </button>
+        <span>
+        <b> Login Failed - </b> Incorrect Email or Password! Please try again.</span>
+    </div>
+  </div>
+
+  <div *ngIf = "serverError">
+    <div class="alert alert-danger alert-dismissible fade show" id = "serverAlert" role = "alert" style = "width: 45%; margin: auto;">
+        <button type="button" aria-hidden="true" (click) = "hideserverAlert()" class="close" aria-label="Close">
+          <i class="bi bi-x"></i>
+        </button>
+        <span>
+        <b> Server Error - </b> An unknown server error occurred while trying to login. Please try again! </span>
+    </div>
+  </div>
+
+  <div *ngIf = "emptyInput">
+    <div class="alert alert-warning alert-dismissible fade show" id = "emptyAlert" role = "alert" style = "width: 45%; margin: auto;">
+        <button type="button" aria-hidden="true" (click) = "hideEmptyAlert()" class="close" aria-label="Close">
+          <i class="bi bi-x"></i>
+        </button>
+        <span>
+        <b> Input values are missing - </b> Please fill the form properly, it's 2 boxes only! </span>
+    </div>
+  </div>
+</div>

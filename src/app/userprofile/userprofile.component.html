@@ -1,0 +1,59 @@
+<div class="container" [@Enter] = "'flyIn'">
+
+  <div class="jumbotron-fluid" style = "text-align: center; margin: auto;">
+    <br><br>
+    <p class = "lead">Update your password</p>
+    <br><br>
+    <div class="form-group">
+      <div class="input-group" style = "width: 40%; margin: auto;">
+        <div class="input-group-addon" style= "background-color: #bd68ee;">
+          &nbsp; <i class="bi bi-person" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+        </div>
+        <input class = "form-control" type="text" [(ngModel)] = "userName" readonly>
+      </div>
+
+      <br>
+
+      <div class="input-group" style = "width: 40%; margin: auto;">
+        <div class="input-group-addon" style= "background-color: #bd68ee;">
+          &nbsp; <i class="bi bi-envelope" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+        </div>
+        <input class = "form-control" type="text" [(ngModel)] = "userMail" readonly>
+      </div>
+
+      <br>
+
+      <div class="input-group" style = "width: 40%; margin: auto;">
+        <div class="input-group-addon" style= "background-color: #bd68ee;">
+          &nbsp; <i class="bi bi-key" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+        </div>
+        <input class = "form-control" type="password" [(ngModel)] = "userPasscode" (ngModelChange) = "activateButton()">
+      </div>
+    </div>
+
+    <br><br>
+    <button id = "btnModified" class = "btn btn-outline-light" (click) = "updateUserData()" [disabled] = "!buttonEnabled" type="submit" name="button">Update</button>
+
+  </div>
+
+  <br>
+  <div *ngIf = "serverError">
+    <div class="alert alert-danger alert-dismissible fade show" id = "serverAlert" role = "alert" style = "width: 45%; margin: auto;">
+        <button type="button" aria-hidden="true" (click) = "hideserverAlert()" class="close" aria-label="Close">
+          <i class="bi bi-x"></i>
+        </button>
+        <span>
+        <b> Server Error - </b> An unknown server error occurred while trying to update user profile. Please try again! </span>
+    </div>
+  </div>
+</div>
+
+<div *ngIf = "updatedProfile">
+  <div class="alert alert-success alert-dismissible fade show" id = "updatedProfileAlert" role = "alert" style = "width: 45%; margin: auto;">
+      <button type="button" aria-hidden="true" (click) = "hideprofileAlert()" class="close" aria-label="Close">
+        <i class="bi bi-x"></i>
+      </button>
+      <span>
+      <b> Successful - </b> User profile updated successfully! </span>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="container" style = "text-align: center;" [@Enter] = "'flyIn'">
+
+  <br><br>
+
+    <p class = "lead">Haven't registered yet? No problem!</p>
+    <p class = "lead">Just enter the following few details to get yourself registered.</p>
+
+  <br><br>
+
+  <form (ngSubmit) = "addNewUser(f)" #f = "ngForm" autocomplete="off">
+    <div class="form-group">
+
+      <div class="input-group" style = "width: 50%; margin: auto;">
+        <div class="input-group-addon" style= "background-color: #bd68ee;">
+          &nbsp; <i class="bi bi-person" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+        </div>
+        <input class = "form-control" type="text" ngModel name="fullname" placeholder="Name" required autocomplete="off">
+      </div>
+
+      <br><br>
+      <div class="input-group" style = "width: 50%; margin: auto;">
+        <div class="input-group-addon" style= "background-color: #bd68ee;">
+          &nbsp; <i class="bi bi-envelope" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+        </div>
+        <input class = "form-control" type="email" ngModel name="usermail" placeholder="Email" required autocomplete="off">
+      </div>
+
+      <br><br>
+      <div class="input-group" style = "width: 50%; margin: auto;">
+        <div class="input-group-addon" style= "background-color: blue;">
+          &nbsp; <i class="bi bi-key" style="font-size: 1.2rem; color: white;"></i> &nbsp;
+        </div>
+         <input class = "form-control" type="password" ngModel name="passcode" placeholder="Password" required autocomplete="new-password">
+      </div>
+
+      <br><br><br>
+
+      <button id = "btnModified" class = "btn btn-outline-light" type="submit" name="button">Register</button>
+
+
+
+    </div>
+    </form>
+
+
+    <div *ngIf = "registration">
+      <div class="alert alert-danger alert-dismissible fade show" id = "registrationAlert" role = "alert" style = "width: 45%; margin: auto;">
+          <button type="button" aria-hidden="true" (click) = "hideAlert()" class="close" aria-label="Close">
+            <i class="bi bi-x"></i>
+          </button>
+          <span>
+          <b> Registration Failed - </b> User with this email already exists! </span>
+      </div>
+    </div>
+
+    <div *ngIf = "userAdded">
+      <div class="alert alert-success alert-dismissible fade show" id = "userAddedAlert" role = "alert" style = "width: 45%; margin: auto;">
+          <button type="button" aria-hidden="true" (click) = "hideUserAlert()" class="close" aria-label="Close">
+            <i class="bi bi-x"></i>
+          </button>
+          <span>
+          <b> Registration Successful - </b> User added successfully! </span>
+      </div>
+    </div>
+
+
+    <div *ngIf = "serverError">
+      <div class="alert alert-danger alert-dismissible fade show" id = "serverAlert" role = "alert" style = "width: 45%; margin: auto;">
+          <button type="button" aria-hidden="true" (click) = "hideserverAlert()" class="close" aria-label="Close">
+            <i class="bi bi-x"></i>
+          </button>
+          <span>
+          <b> Server Error - </b> An unknown server error occurred while trying to register. Please try again! </span>
+      </div>
+    </div>
+
+    <div *ngIf = "emptyInput">
+      <div class="alert alert-warning alert-dismissible fade show" id = "emptyAlert" role = "alert" style = "width: 45%; margin: auto;">
+          <button type="button" aria-hidden="true" (click) = "hideEmptyAlert()" class="close" aria-label="Close">
+            <i class="bi bi-x"></i>
+          </button>
+          <span>
+          <b> Input values are missing - </b> Please fill the form properly, it's 3 boxes only! </span>
+      </div>
+    </div>
+</div>
